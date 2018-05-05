@@ -1,0 +1,137 @@
+<html>
+  <head>
+    <title> HOME </title>
+    <!-- Js Scripts will be here -->
+    <script type="text/javascript">
+      function createButton(){
+        document.getElementById('learn-more-server-button').addEventListener('click', function(){
+          window.location.href = "/details/our_server";
+        });
+        document.getElementById("learn-more-api").addEventListener('click', function(){
+          window.location.href = "/details/api_docs";
+        });
+        document.getElementById('load-api-page').addEventListener('click', function(){window.location.href = "/details/api_docs";});
+        document.getElementById('load-details-page').addEventListener('click', function(){window.location.href = "/details/our_server";});
+        document.getElementById('load-main-page').addEventListener('click', function(){window.location.href = "/";});
+      }
+      document.addEventListener('DOMContentLoaded', function(){
+        //Why not just run the function? Well the HTML and JS load at different times! You could open the webpage and the button not appear, but the JS load and run which would end badly!
+        //There would be no button to touch, causing the script to crash. Instead here we tell the system to execute the function when the site is ready. Document is the webpage class and addEventLister('DOMContentLoaded') tells the program to body-sub-text
+        createButton();
+      })
+    </script>
+  </head>
+  <body>
+    <div id="header">
+      <p id="title"> Welcome To Jct's Server </p>
+    </div>
+    <div id="menu">
+      <button id="load-main-page" class="menuButton"> Home </button>
+      <button id="load-api-page" class="menuButton"> API </button>
+      <button id="load-details-page" class="menuButton"> Details </button>
+    </div>
+    <div id="body">
+      <div id="body-header">
+        <p id="body-header-text"> What is this? </p>
+      </div>
+      <p id="body-sub-text"> This application is hosted in node.js, built by the head of the JCT Student Team. The core program is based around the module "Express", which can be found via npm. We chose Node.js because it offered a way to control how data comes into our system, and how our system deals with such data. Yes we could accomplish the same with Python or PHP, but we need to strive for modernism. All of the latest companies are pushing for node.js servers or apps, and with facebook pushing react native... </p>
+
+      <button id='learn-more-server-button' class="linkButtons"> Learn More </button>
+
+    </div>
+    <div id="body">
+      <div id="body-header">
+        <p id="body-header-text"> API </p>
+      </div>
+      <p id="body-sub-text"> In an effort to keep everything open source we would like to provide you full access to our API so of course you'll need a way to see what we have avalible! The button below will take you to where we'll be providing the information C: Happy hacking!</p>
+      <button id="learn-more-api" class="linkButtons"> API Docs </button>
+
+
+    </div>
+    <style>
+      #header {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(45deg, rgba(44, 96, 115, 0.98), rgba(49, 115, 140, .99), rgba(51, 125, 150, 1) 90%);
+        color: white;
+        text-align: center;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+      #title {
+        font-size: 50px;
+        letter-spacing: 5px;
+        font-weight: bold;
+        padding-top: 80px;
+        font-family: Kiona-Regular;
+      }
+      #menu {
+        width: 100%;
+        height: 10%;
+        background-color: #224958;
+      }
+      .menuButton{
+        height: 100%;
+        width: 5%;
+        font-family: "Kiona-Regular";
+        font-weight: bold;
+        margin: 0px;
+        background-color: #224958;
+        color: white;
+        border: none;
+      }
+      .menuButton:hover {
+        background-color: rgba(49, 120, 140, 0.98);
+        color: white;
+      }
+      #body {
+        background-color: white;
+        margin: 5%;
+        width: 90%;
+        min-height: 50%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      #body-header {
+        width: 100%;
+        height: 10%;
+        background-color: rgb(49, 115, 140);
+      }
+      #body-header-text {
+        color: white;
+        font-size: 30px;
+        letter-spacing: 2px;
+        padding-top: 1%;
+        font-family: Kiona-Regular;
+        padding-left: 5px;
+      }
+      #body-sub-text {
+        font-family: Comfortaa;
+        padding-left: 5px;
+        font-size: 18px;
+      }
+      .linkButtons {
+        border: none;
+        font-family: "Kiona-Regular";
+        font-size: 24px;
+        height: 50px;
+        width: 60%;
+        border-radius: 5px;
+        color: white;
+        margin-left: 20%;
+        background: linear-gradient(45deg, rgba(44, 96, 115, 0.98), rgba(49, 115, 140, .99), rgba(51, 125, 150, 1) 90%);
+
+      }
+      body {
+        margin: 0;
+        background-color: #cecece;
+      }
+      @font-face {
+        font-family: Comfortaa;
+        src: url(/fonts/q&=Comfortaa-Regular)
+      }
+      @font-face {
+        font-family: Kiona-Regular;
+        src: url(/fonts/q&=Kiona-Regular);
+        }
+    </style>
+  </body>
+</html>

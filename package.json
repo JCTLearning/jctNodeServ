@@ -1,0 +1,14 @@
+{
+  "name": "nserver",
+  "version": "1.0.0",
+  "description": "This is a node webserver used for developing API's",
+  "main": "./src/main.js",
+  "scripts": {
+    "start": "node ./src/main.js"
+  },
+  "author": "Thoward",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
