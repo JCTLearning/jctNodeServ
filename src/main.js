@@ -19,7 +19,13 @@ app.get("/", function(request, response){
   });
 
 });
-
+app.get('/api/login/:loginString', function(request, response){
+		var loginString = request.params.loginString;
+		var userCreds = loginString.split("-");
+		console.log(userCreds);
+		
+	}	
+);
 app.get("/details/api_docs", function(request, response){
   //This is where we will display the api docs
   fs.readFile("./src/html/details/apiDocs.html", function(err, data){if(err){console.log("[--Error: "+err+" --]");}else{console.log("[-- Loading API docs for user --]");response.end(data);}});
