@@ -22,9 +22,14 @@ app.get("/", function(request, response){
 app.get('/api/login/:loginString', function(request, response){
 		var loginString = request.params.loginString;
 		var userCreds = loginString.split("-");
-		console.log(userCreds);
-		
-	}	
+		//console.log(userCreds);
+    //Import the login creds
+    let file = fs.readFileSync("./data/login/login.json")
+    let jsonData = file;
+    console.log(JSON.parse(jsonData))
+
+
+	}
 );
 app.get("/details/api_docs", function(request, response){
   //This is where we will display the api docs
@@ -60,5 +65,5 @@ app.get("*", function(request, response){
   response.redirect("/"); //return home
 })
 app.listen("3000", "127.0.0.1", function(){
-  //console.log("[-- Started --]");
+  console.log("[-- Started --]");
 })
