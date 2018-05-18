@@ -22,26 +22,9 @@ app.get("/", function(request, response){
 app.get('/api/login/:loginString', function(request, response){
 		var loginString = request.params.loginString;
 		var userCreds = loginString.split("-");
-		//console.log(userCreds);
-    //Import the login creds
-    let file = fs.readFileSync("./data/login/login.json")
-    let data = file;
-    let jsonData = JSON.parse(data);
-	if(userCreds[1] == jsonData["username"][userCreds[0]]) {
-		//This means the creds are right, password == password
-		//Generate token
-		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-		var textS = "";
-		for (var i = 0; i < 5; i++){
-			textS =  textS + possible.charAt(Math.floor(Math.random() * possible.length));
-		}
-		console.log(textS);
-	}
-	else {
-		//The pass didn't work
-		response.end("fail");
-	}
-	}
+		console.log(userCreds);
+		
+	}	
 );
 app.get("/details/api_docs", function(request, response){
   //This is where we will display the api docs
@@ -77,5 +60,5 @@ app.get("*", function(request, response){
   response.redirect("/"); //return home
 })
 app.listen("3000", "127.0.0.1", function(){
-  console.log("[-- Started --]");
+  //console.log("[-- Started --]");
 })
