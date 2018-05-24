@@ -1,7 +1,1 @@
-{
-  "username" : {
-    "user" : "password"
-  }
-
-
-}
+{"login":[{"taylor":{"password":"pass","token":"9n%TrB!mv;5FvC2v"}},{"dev":{"password":"aa16","token":"G*pnOP<DA'&3x6@v"}}]}
