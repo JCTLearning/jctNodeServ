@@ -24,9 +24,11 @@
       <div id="body-header">
         <p id="body-header-text"> Okay so really what is it? </p>
       </div>
-      <p id="body-sub-text"> This application is hosted in node.js, built by the head of the JCT Student Team. The core program is based around the module "Express", which can be found via npm. We chose Node.js because it offered a way to control how data comes into our system, and how our system deals with such data. Yes we could accomplish the same with Python or PHP, but we need to strive for modernism. All of the latest companies are pushing for node.js servers or apps, and with facebook pushing react native, keeping it constantly updated, JS is not going to die anytime soon. </p>
-      <p id="body-sub-text"> So let's talk about node first... What is it? In caveman speak, it's javascript but on your computer, not browser. Such implies that the language now has access to system processes, files etc, etc. It's pretty much Python at this point! In some better terms, people have taken the extreamly powerful Java Script engine created by google chrome and given it access to the system. From node we get things like react-native (Mobile dev in JS), Electron (HTMLXCSSXJS in a desktop app), and of course Express. </p>
-      <p id="body-sub-text"> Express lets us take http requests from clients and send back data! Of course we could use appache and just host html files, but that is not what I want for this is not a website. Yes you may be looking at a site, but the primary purpose of this server is to get students into the rhythym of dealing with http APIs and JSON objects. Express lets us do both with their pathing, for a user can send a get request to "ourhost/details/our_server" and get this html page, but they can also do a http request to "/api/apiService/q!='data'" and get a JSON file that they can sort through for ideas. That is the idea anyways. That's not just the only reason for creating this, see in order to teach we must first understand the technology. How am I to teach you if I know little of how todo this? This is a learning tool, so we must open it up and explore it! </p>
+      <p id="body-sub-text">This application is hosted in node.js, built by the head of the JCT Student Team. The core program is based around the module "Express", which can be found via npm. We chose Node.js because it offered a way to control how data comes into our system, and how our system deals with such data. Yes we could accomplish the same with Python or PHP, but we need to strive for modernism. All of the latest companies are pushing for node.js servers or apps, and with facebook pushing react native, keeping it constantly updated, JS is not going to die anytime soon. </p>
+<p id="body-sub-text">So let's talk about node first... What is it? In common terms, it's javascript but not stuck in the browser. Such implies that the language now has access to system processes, files etc, etc. It's pretty much Python at this point!  From node we get things like react-native (Mobile dev in JS), Electron (HTML//CSS//JS in a desktop app), and of course Express. </p>
+
+ <p id="body-sub-text">Express lets us take http requests from clients and send back data! Of course we could use Appache and just host html files, yet that is not we want as developers. Yes you may be looking at a site, but the primary purpose of this server is to get students into the rhythm of dealing with http(s)  APIs and JSON objects. Express lets us do both with their pathing, for a user can send a get request to "ourhost/details/our_server" and get this html page, but they can also do a http request to "/api/apiService/q!='data'" and get a JSON file that they can sort through for ideas. That is the idea anyways. That's not just the only reason for creating this, see in order to teach a subject, we must first have a sound understanding of the subject. How am I to teach you if I know little of what is taking place? This is a learning tool, so we must dive forwards and explore it! </p>
+
     </div>
 
     </div>
@@ -67,8 +69,8 @@
       }
       #body {
         background-color: white;
-        margin: 5%;
-        width: 90%;
+        margin-left: 15%;
+        width: 70%;
         min-height: 50%;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         padding-bottom: 10px;
@@ -89,7 +91,7 @@
       }
       #body-sub-text {
         font-family: Comfortaa;
-        padding-left: 5px;
+        padding: 10px;
         font-size: 18px;
       }
       .linkButtons {

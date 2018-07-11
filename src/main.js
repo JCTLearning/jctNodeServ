@@ -3,8 +3,12 @@
 var express = require("express");
 var app = express();
 var fs = require("fs"); //Pathing note, ./ puts us at main.js root dir... You would think I would realize that but I keep forgetting
-//Main script
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
+
+//Main script
 app.get("/", function(request, response){
   //Sets up our home page, to grab all requests.
   fs.readFile("./src/html/home.html", function(err, data){
@@ -19,21 +23,19 @@ app.get("/", function(request, response){
   });
 
 });
-app.get("/api/login/:loginString", function(request, response){
+app.post("/api/login/", function(request, response){
   console.log("[-- User requested login --]");
-  var userInfo = request.params.loginString;
-  userInfo = userInfo.split("-"); //Redefine to save decl
+  let username = request.body.username;
+  let password = request.body.password;
   let userLoginFile = JSON.parse(fs.readFileSync("./data/login/login.json"));
-  //console.log(userLoginFile["login"][0][userInfo[0]]["password"])
   try{
-    var nil = userLoginFile["login"][0][userInfo[0]]["password"]; //If this fails, the user doesn't exsist
-
+    var nil = userLoginFile["login"][0][username]["password"]; //If this fails, the user doesn't exsist
     //If the user account exsists
-    if(userInfo[1]==userLoginFile["login"][0][userInfo[0]]["password"]){
+    if(password==userLoginFile["login"][0][username]["password"]){
       //Login is a success
-      let responseJson = '{"response" : {"0" : "Success","token" : '+userLoginFile["login"][0][userInfo[0]]["token"]+'}}';
+      let responseJson = '{"response" : {"0" : "Success","token" : "'+userLoginFile["login"][0][username]["token"]+'"}}';
       response.end(String(responseJson));
-    }if(userInfo[1]!=userLoginFile["login"][0][userInfo[0]]["password"]){
+    }if(password!=userLoginFile["login"][0][username]["password"]){
       let responseJson = '{"response" : {"0" : "fail"}}';
       response.end(String(responseJson));
     }
@@ -43,17 +45,17 @@ app.get("/api/login/:loginString", function(request, response){
     response.end(String(responseJson));
   }
 });
-app.get("/api/createlogin/:usernamepass", function(request, response){
+app.post("/api/createlogin/", function(request, response){
   //This is where we'll create a user name and login for the users, while creating a 16 bit token
-  var userInfo = request.params.usernamepass;
-  userInfo = userInfo.split('-')
+  let username = request.body.username;
+  let password = request.body.password;
   //First check if user already exsist
   let loginFile = "./data/login/login.json"
   var loginData = fs.readFileSync(loginFile);
   loginData = JSON.parse(loginData);
   for(var i = 0; i < loginData['login'].length; i++){
 
-    if(loginData["login"][i][userInfo[0]]!=undefined){
+    if(loginData["login"][i][username]!=undefined){
       userExsistOrNo = true;
     }
     else {
@@ -74,14 +76,12 @@ app.get("/api/createlogin/:usernamepass", function(request, response){
     for (var i =0; i < 16; i++){
       token = token + possibleLetters.charAt(Math.floor(Math.random() * possibleLetters.length));
     }
-
-    //loginData = JSON.parse(loginData)
-    let userPushData = JSON.parse('{"'+userInfo[0]+'":{"password" :"'+userInfo[1]+'","token" :"'+token+'"}}');
+    let userPushData = JSON.parse('{"'+username+'":{"password" :"'+password+'","token" :"'+token+'"}}');
     loginData["login"].push(userPushData);
     //Update the login file with new creds
-    fs.writeFile(loginFile, JSON.stringify(loginData), function(err){if(err){console.log("[-- "+String(err)+" --]");}})
-    let reply = '{"response" : {"0" : "Success","token" : '+token+'}}'
-    response.end(reply)
+    fs.writeFile(loginFile, JSON.stringify(loginData), function(err){if(err){console.log("[-- "+String(err)+" --]");}});
+    let reply = '{"response" : {"0" : "Success","token" : '+token+'}}';
+    response.end(reply);
   }
 });
 app.get("/details/api_docs", function(request, response){
@@ -116,8 +116,8 @@ app.get("*", function(request, response){
 
   //Will catch any unindexed get requests
   response.redirect("/"); //return home
-})
+});
 
-app.listen("3000", "192.168.254.67", function(){
+app.listen("80", "127.0.0.1", function(){
   console.log("[-- Started --]");
 })

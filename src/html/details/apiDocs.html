@@ -3,6 +3,141 @@
     <title> API DOCS </title>
   </head>
   <body>
-      <p>Im not done</p>
+    <html>
+      <head>
+        <title> API </title>
+        <!-- Js Scripts will be here -->
+        <script type="text/javascript">
+          function createButton(){
+            document.getElementById('load-api-page').addEventListener('click', function(){window.location.href = "/details/api_docs";});
+            document.getElementById('load-details-page').addEventListener('click', function(){window.location.href = "/details/our_server";});
+            document.getElementById('load-main-page').addEventListener('click', function(){window.location.href = "/";});
+          }
+          document.addEventListener('DOMContentLoaded', function(){createButton();});
+        </script>
+      </head>
+      <body>
+        <div id="header">
+          <p id="title"> Api Documentation </p>
+        </div>
+        <div id="menu">
+          <button id="load-main-page" class="menuButton"> Home </button>
+          <button id="load-api-page" class="menuButton"> API </button>
+          <button id="load-details-page" class="menuButton"> Details </button>
+        </div>
+        <div id="body">
+          <div id="body-header">
+            <p id="body-header-text">Notes before moving on</p>
+          </div>
+          <p id="body-sub-text">Please take note that the api is accessed by doing http(s) post/get requests. This implies that you can do it in any language, given the language supports get//post requests. If you don't know how to do a get or post request in the language you are working on, I'll provide some links below, but please look it up if I don't have a link for you... It's realtivly simple. Your requests will usually look like <code class="singleBlock">"http://hostnameorip/api/command"</code>, so if i was hosting on 127.0.0.1, and I wanted to grab my token from the server I would send a post request to <code class='singleBlock'>http://127.0.0.1/api/login</code> with the parameters username and password. All requests will return data in a JSON format, and will usually start of with <code class='singleBlock'>{response: {"0":"success/fail", "data":"data"}}</code>. Take our api as a chance to get used to using JSON, because it is one of the best ways to exchange data through an api. </p>
+          <p id="body-sub-text">Http requests methods, what they are etc etc <a href='https://www.w3schools.com/tags/ref_httpmethods.asp'>W3 Schools</a></p>
+          <p id="body-sub-text">Making POST and GET requests in pyhon <a href="https://www.geeksforgeeks.org/get-post-requests-using-python/">Geeks For Geeks</a></p>
+          <p id="body-sub-text">For CPP using libcurl is probably your best bet, which can be found <a href='https://curl.haxx.se/libcurl/'>here</a>, unless you are using QT. If you're using QT you're better off using QNetwork, <a href="https://stackoverflow.com/questions/5220652/qt-how-to-get-the-response-from-a-get">GET</a> and <a href="http://www.qtcentre.org/threads/42545-HTTP-request-POST-in-QT-application"> POST</a></p>
+          <p id="body-sub-text">For JS you could use jquery, but that's just blegh. Instead use xmlhttprequest which can be found at <a href='https://stackoverflow.com/questions/247483/http-get-request-in-javascript'>this</a> link. </p>
+        </div>
+        <div id="body">
+          <div id="body-header">
+            <p id="body-header-text"> Api</p>
+          </div>
+          <p id="body-sub-text">The Current functions we have right now are</p>
+          <p id="body-sub-text"> <code class="singleBlock">/api/login</code>  --  This is where login request are sent in the form of a post request. Of course your post request should have the parameters <code class="singleBlock">username</code> and <code class="singleBlock">password</code>. A post request in python would look like: <code class="singleBlock">requests.post("ourserver.com/login/api", data={"username":"pass", "password": "pass"})</code>. You can have two possible returns, a fail and succeed. The fail message usually is <code class="singleBlock">{"response" : {"0" : "fail"}}</code>', but a success will return your user token, which will look like this <code class='singleBlock'>{"response:{"0":"Success", "token":"xxxxx"}"}</code>.</p>
+          <p id="body-sub-text"><code class="singleBlock">/api/createlogin</code> --  This is where account creation is done, in the form of a post request. The post request have the same parameters as login and returns the same fail output plus the possible "fail" return when there is already an account made with that name. If the account is successfully made, the sever will return a success message along with the key the system has assigned for you. The output would look like <code class='singleBlock'>{"response:{"0":"Success", "token":"xxxxx"}"}</code>.</p>
+        </div>
+        <style>
+          #header {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, rgba(44, 96, 115, 0.98), rgba(49, 115, 140, .99), rgba(51, 125, 150, 1) 90%);
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+          #title {
+            font-size: 50px;
+            letter-spacing: 5px;
+            font-weight: bold;
+            padding-top: 80px;
+            font-family: Kiona-Regular;
+          }
+          #menu {
+            width: 100%;
+            height: 10%;
+            background-color: #224958;
+          }
+          .menuButton{
+            height: 100%;
+            width: 5%;
+            font-family: "Kiona-Regular";
+            font-weight: bold;
+            margin: 0px;
+            background-color: #224958;
+            color: white;
+            border: none;
+          }
+          .menuButton:hover {
+            background-color: rgba(49, 120, 140, 0.98);
+            color: white;
+          }
+          #body {
+            background-color: white;
+            margin: 5%;
+            width: 90%;
+            min-height: 50%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            padding-bottom: 10px;
+          }
+          #body-header {
+            width: 100%;
+            height: 10%;
+            background-color: rgb(49, 115, 140);
+
+          }
+          #body-header-text {
+            color: white;
+            font-size: 30px;
+            letter-spacing: 2px;
+            padding-top: 1%;
+            font-family: Kiona-Regular;
+            padding-left: 5px;
+          }
+          #body-sub-text {
+            font-family: Comfortaa;
+            padding-left: 5px;
+            font-size: 18px;
+          }
+          .linkButtons {
+            border: none;
+            font-family: "Kiona-Regular";
+            font-size: 24px;
+            height: 50px;
+            width: 60%;
+            border-radius: 5px;
+            color: white;
+            margin-left: 20%;
+            background: linear-gradient(45deg, rgba(44, 96, 115, 0.98), rgba(49, 115, 140, .99), rgba(51, 125, 150, 1) 90%);
+
+          }
+          .singleBlock{
+            font-family: Kiona;
+            font-size: 18px;
+
+          }
+          body {
+            margin: 0;
+            background-color: #cecece;
+          }
+          @font-face {
+            font-family: Comfortaa;
+            src: url(/fonts/q&=Comfortaa-Regular)
+          }
+          @font-face {
+            font-family: Kiona-Regular;
+            src: url(/fonts/q&=Kiona-Regular);
+            }
+
+        </style>
+      </body>
+    </html>
+
   </body>
 </html>
